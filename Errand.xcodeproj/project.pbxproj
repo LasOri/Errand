@@ -47,10 +47,7 @@
 		456035B722C412D800DF2DF5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		456035BA22C412D800DF2DF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		456035BC22C412D800DF2DF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		456035C522C412D800DF2DF5 /* ErrandTestRunnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrandTestRunnerTests.swift; sourceTree = "<group>"; };
-		456035C722C412D800DF2DF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		456035D022C412D800DF2DF5 /* ErrandTestRunnerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrandTestRunnerUITests.swift; sourceTree = "<group>"; };
-		456035D222C412D800DF2DF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		456035DC22C4159C00DF2DF5 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		4591D03C22C16E1400C67F5A /* ErrandTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ErrandTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4591D03E22C16E1400C67F5A /* ErrandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrandTests.swift; sourceTree = "<group>"; };
 		4591D04022C16E1400C67F5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -97,24 +94,6 @@
 			path = ErrandTestRunner;
 			sourceTree = "<group>";
 		};
-		456035C422C412D800DF2DF5 /* ErrandTestRunnerTests */ = {
-			isa = PBXGroup;
-			children = (
-				456035C522C412D800DF2DF5 /* ErrandTestRunnerTests.swift */,
-				456035C722C412D800DF2DF5 /* Info.plist */,
-			);
-			path = ErrandTestRunnerTests;
-			sourceTree = "<group>";
-		};
-		456035CF22C412D800DF2DF5 /* ErrandTestRunnerUITests */ = {
-			isa = PBXGroup;
-			children = (
-				456035D022C412D800DF2DF5 /* ErrandTestRunnerUITests.swift */,
-				456035D222C412D800DF2DF5 /* Info.plist */,
-			);
-			path = ErrandTestRunnerUITests;
-			sourceTree = "<group>";
-		};
 		4591D03D22C16E1400C67F5A /* ErrandTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -135,11 +114,10 @@
 		45E1FC2C22C16C5F0033448E = {
 			isa = PBXGroup;
 			children = (
+				456035DC22C4159C00DF2DF5 /* README.md */,
 				4591D04E22C16FA600C67F5A /* Errand */,
 				4591D03D22C16E1400C67F5A /* ErrandTests */,
 				456035AF22C412D500DF2DF5 /* ErrandTestRunner */,
-				456035C422C412D800DF2DF5 /* ErrandTestRunnerTests */,
-				456035CF22C412D800DF2DF5 /* ErrandTestRunnerUITests */,
 				45E1FC3622C16C5F0033448E /* Products */,
 			);
 			sourceTree = "<group>";
