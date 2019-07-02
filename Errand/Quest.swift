@@ -9,7 +9,8 @@
 import Foundation
 
 prefix operator <&
-@discardableResult prefix func <&<T>(operand: (Quest<T>) throws -> ()) throws -> Reward<T> {
+@discardableResult 
+prefix func <&<T>(operand: (Quest<T>) throws -> ()) throws -> Reward<T> {
     let quest = Quest<T>()
     try operand(quest)
     return quest
