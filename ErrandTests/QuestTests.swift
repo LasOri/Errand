@@ -66,4 +66,27 @@ class QuestTests: XCTestCase {
         XCTAssertEqual(.completed, waiterResult)
         XCTAssertEqual(TestError.expectedError, returnedError)
     }
+    
+    func testRewardCreator() {
+        let expectedResult = "expectedResult"
+        var returnedResult = "returnedResult"
+        
+        let rewardClosure: (Quest<String>) -> () = { quest in
+            DispatchQueue(label: "test").asyncAfter(deadline: .now() + 2, execute: {
+                quest.win(the: expectedResult)
+            })
+        }
+        
+        let reward = try! <&rewardClosure
+        
+        let expectation = XCTestExpectation(description: "waitForReward")
+        reward.earn { result in
+            returnedResult = try! result.get()
+            expectation.fulfill()
+        }
+        let waiterResult = XCTWaiter.wait(for: [expectation], timeout: timeout)
+        
+        XCTAssertEqual(.completed, waiterResult)
+        XCTAssertEqual(expectedResult, returnedResult)
+    }
 }
