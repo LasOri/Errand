@@ -12,6 +12,8 @@
 		456035B622C412D600DF2DF5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 456035B422C412D600DF2DF5 /* Main.storyboard */; };
 		456035B822C412D800DF2DF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 456035B722C412D800DF2DF5 /* Assets.xcassets */; };
 		456035BB22C412D800DF2DF5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 456035B922C412D800DF2DF5 /* LaunchScreen.storyboard */; };
+		458C967F22CBAF2E00CABB33 /* Reward.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458C967E22CBAF2E00CABB33 /* Reward.swift */; };
+		458C968122CBAF6D00CABB33 /* RewardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458C968022CBAF6D00CABB33 /* RewardTests.swift */; };
 		4591D03F22C16E1400C67F5A /* ErrandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4591D03E22C16E1400C67F5A /* ErrandTests.swift */; };
 		4591D04122C16E1400C67F5A /* libErrand.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E1FC3522C16C5F0033448E /* libErrand.a */; };
 		4591D04C22C16F5B00C67F5A /* Errand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4591D04B22C16F5B00C67F5A /* Errand.swift */; };
@@ -48,6 +50,8 @@
 		456035BA22C412D800DF2DF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		456035BC22C412D800DF2DF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		456035DC22C4159C00DF2DF5 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		458C967E22CBAF2E00CABB33 /* Reward.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reward.swift; sourceTree = "<group>"; };
+		458C968022CBAF6D00CABB33 /* RewardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardTests.swift; sourceTree = "<group>"; };
 		4591D03C22C16E1400C67F5A /* ErrandTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ErrandTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4591D03E22C16E1400C67F5A /* ErrandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrandTests.swift; sourceTree = "<group>"; };
 		4591D04022C16E1400C67F5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -99,6 +103,7 @@
 			children = (
 				4591D03E22C16E1400C67F5A /* ErrandTests.swift */,
 				4591D04022C16E1400C67F5A /* Info.plist */,
+				458C968022CBAF6D00CABB33 /* RewardTests.swift */,
 			);
 			path = ErrandTests;
 			sourceTree = "<group>";
@@ -107,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				4591D04B22C16F5B00C67F5A /* Errand.swift */,
+				458C967E22CBAF2E00CABB33 /* Reward.swift */,
 			);
 			path = Errand;
 			sourceTree = "<group>";
@@ -263,6 +269,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				458C968122CBAF6D00CABB33 /* RewardTests.swift in Sources */,
 				4591D03F22C16E1400C67F5A /* ErrandTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -271,6 +278,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				458C967F22CBAF2E00CABB33 /* Reward.swift in Sources */,
 				4591D04C22C16F5B00C67F5A /* Errand.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
