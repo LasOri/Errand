@@ -11,6 +11,10 @@ import XCTest
 
 class ErrandTests: XCTestCase {
     
+    enum TestError: Error, Equatable {
+        case expectedError
+    }
+    
     let timeout = 3.0
 
     func testWanderlust_when_landIsGiven() {
@@ -21,11 +25,11 @@ class ErrandTests: XCTestCase {
             .wanderlust(on: .land(expectedQueueName))
         
         let expectation = XCTestExpectation(description: "waitForResult")
-        errand.startQuests { () -> String? in
+        errand.startQuests(questsHandler: { () -> String? in
             returnedQueueName = OperationQueue.current!.name
             expectation.fulfill()
             return nil
-        }
+        })
         
         let waiterResult = XCTWaiter.wait(for: [expectation], timeout: timeout)
         
@@ -40,15 +44,111 @@ class ErrandTests: XCTestCase {
         let errand = Errand<String>()
         
         let expectation = XCTestExpectation(description: "waitForResult")
-        errand.startQuests { () -> String? in
+        errand.startQuests(questsHandler: { () -> String? in
             returnedQueueName = OperationQueue.current!.name
             expectation.fulfill()
             return nil
-        }
+        })
         
         let waiterResult = XCTWaiter.wait(for: [expectation], timeout: timeout)
         
         XCTAssertEqual(.completed, waiterResult)
         XCTAssertEqual(expectedQueueName, returnedQueueName)
+    }
+    
+    func testArrival_when_landIsGiven() {
+        let expectedQueueName = "Dream"
+        let expectedResult = "result"
+        var returnedQueueName: String!
+        var returnedResult: String!
+        
+        let errand = Errand<String>()
+            .arrival(on: .land(expectedQueueName))
+        
+        let expectation = XCTestExpectation(description: "waitForResult")
+        errand.startQuests(questsHandler: { () -> String? in
+            return expectedResult
+        }, rewardHandler: { (result) in
+            returnedResult = result
+            returnedQueueName = OperationQueue.current!.name
+            expectation.fulfill()
+        }, willHandler: nil)
+        
+        let waiterResult = XCTWaiter.wait(for: [expectation], timeout: timeout)
+        
+        XCTAssertEqual(.completed, waiterResult)
+        XCTAssertEqual(expectedQueueName, returnedQueueName)
+        XCTAssertEqual(expectedResult, returnedResult)
+    }
+    
+    func testArrival_when_landIsNotGiven() {
+        let expectedQueueName = OperationQueue.main.name
+        let expectedResult = "result"
+        var returnedQueueName: String!
+        var returnedResult: String!
+        
+        let errand = Errand<String>()
+        
+        let expectation = XCTestExpectation(description: "waitForResult")
+        errand.startQuests(questsHandler: { () -> String? in
+            return expectedResult
+        }, rewardHandler: { (result) in
+            returnedResult = result
+            returnedQueueName = OperationQueue.current!.name
+            expectation.fulfill()
+        }, willHandler: nil)
+        
+        let waiterResult = XCTWaiter.wait(for: [expectation], timeout: timeout)
+        
+        XCTAssertEqual(.completed, waiterResult)
+        XCTAssertEqual(expectedQueueName, returnedQueueName)
+        XCTAssertEqual(expectedResult, returnedResult)
+    }
+    
+    func testArrival_when_landIsGiven_errorHappens() {
+        let expectedQueueName = "Dream"
+        var returnedQueueName: String!
+        var returnedError: TestError!
+        
+        let errand = Errand<String>()
+            .arrival(on: .land(expectedQueueName))
+        
+        let expectation = XCTestExpectation(description: "waitForResult")
+        errand.startQuests(questsHandler: { () -> String? in
+            throw TestError.expectedError
+        }, rewardHandler: nil, willHandler: { error in
+            returnedQueueName = OperationQueue.current!.name
+            returnedError = error as? ErrandTests.TestError
+            expectation.fulfill()
+        })
+        
+        let waiterResult = XCTWaiter.wait(for: [expectation], timeout: timeout)
+        
+        XCTAssertEqual(.completed, waiterResult)
+        XCTAssertEqual(expectedQueueName, returnedQueueName)
+        XCTAssertEqual(TestError.expectedError, returnedError)
+    }
+    
+    func testArrival_when_landIsNotGiven_errorHappens() {
+        let expectedQueueName = OperationQueue.main.name
+        var returnedQueueName: String!
+        var returnedError: TestError!
+        
+        let errand = Errand<String>()
+        
+        let expectation = XCTestExpectation(description: "waitForResult")
+        errand.startQuests(questsHandler: { () -> String? in
+            throw TestError.expectedError
+        }, rewardHandler: nil, willHandler: { error in
+            returnedQueueName = OperationQueue.current!.name
+            returnedError = error as? ErrandTests.TestError
+            expectation.fulfill()
+        })
+        
+        let waiterResult = XCTWaiter.wait(for: [expectation], timeout: timeout)
+        
+        XCTAssertEqual(.completed, waiterResult)
+        XCTAssertEqual(expectedQueueName, returnedQueueName)
+        XCTAssertEqual(TestError.expectedError, returnedError)
     }
 }

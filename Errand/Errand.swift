@@ -16,8 +16,11 @@ enum Land {
 class Errand<T> {
     
     typealias QuestsClosure = () throws -> T?
+    typealias RewardClosure = (T) -> ()
+    typealias TombClosure = (Error) -> ()
     
     private var wanderlustLand: Land?
+    private var arrivalLand: Land?
     
     private lazy var wanderlustQueue: OperationQueue = {
         var queue = OperationQueue()
@@ -33,6 +36,21 @@ class Errand<T> {
         }
         return queue
     }()
+    
+    private lazy var arrivalQueue: OperationQueue = {
+        var queue = OperationQueue.main
+        guard let land = arrivalLand else {
+            return queue
+        }
+        switch land {
+        case .mein:
+            break
+        case .land(let name):
+            queue = OperationQueue()
+            queue.name = name
+        }
+        return queue
+    }()
 
     init() {
         
@@ -43,9 +61,24 @@ class Errand<T> {
         return self
     }
 
-    func startQuests(questsHandler: @escaping QuestsClosure) {
+    func arrival(on land: Land) -> Errand {
+        arrivalLand = land
+        return self
+    }
+    
+    func startQuests(questsHandler: @escaping QuestsClosure, rewardHandler: RewardClosure? = nil, willHandler: TombClosure? = nil) {
         wanderlustQueue.addOperation {
-            try! questsHandler()
+            do {
+                if let reward = try questsHandler() {
+                    self.arrivalQueue.addOperation {
+                        rewardHandler?(reward)
+                    }
+                }
+            } catch {
+                self.arrivalQueue.addOperation {
+                    willHandler?(error)
+                }
+            }
         }
     }
 }
