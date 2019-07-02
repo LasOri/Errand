@@ -7,6 +7,7 @@
 //
 
 import Foundation
+
 class Reward<Treasure> {
     
     typealias RewardCallback = (Result<Treasure, Error>) -> ()

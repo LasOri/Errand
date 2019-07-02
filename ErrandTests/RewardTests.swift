@@ -20,8 +20,8 @@ class RewardTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "waitForReward")
         reward.earn { result in
-            expectation.fulfill()
             returnedResult = result
+            expectation.fulfill()
         }
     
         reward.reward = .success(expectedResult)

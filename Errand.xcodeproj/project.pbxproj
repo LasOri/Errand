@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4554A2F322CBB6F5004DBC76 /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4554A2F222CBB6F5004DBC76 /* Quest.swift */; };
+		4554A2F522CBBCE8004DBC76 /* QuestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4554A2F422CBBCE8004DBC76 /* QuestTests.swift */; };
 		456035B122C412D500DF2DF5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456035B022C412D500DF2DF5 /* AppDelegate.swift */; };
 		456035B322C412D500DF2DF5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456035B222C412D500DF2DF5 /* ViewController.swift */; };
 		456035B622C412D600DF2DF5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 456035B422C412D600DF2DF5 /* Main.storyboard */; };
@@ -42,6 +44,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4554A2F222CBB6F5004DBC76 /* Quest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quest.swift; sourceTree = "<group>"; };
+		4554A2F422CBBCE8004DBC76 /* QuestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestTests.swift; sourceTree = "<group>"; };
 		456035AE22C412D500DF2DF5 /* ErrandTestRunner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ErrandTestRunner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		456035B022C412D500DF2DF5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		456035B222C412D500DF2DF5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +108,7 @@
 				4591D03E22C16E1400C67F5A /* ErrandTests.swift */,
 				4591D04022C16E1400C67F5A /* Info.plist */,
 				458C968022CBAF6D00CABB33 /* RewardTests.swift */,
+				4554A2F422CBBCE8004DBC76 /* QuestTests.swift */,
 			);
 			path = ErrandTests;
 			sourceTree = "<group>";
@@ -113,6 +118,7 @@
 			children = (
 				4591D04B22C16F5B00C67F5A /* Errand.swift */,
 				458C967E22CBAF2E00CABB33 /* Reward.swift */,
+				4554A2F222CBB6F5004DBC76 /* Quest.swift */,
 			);
 			path = Errand;
 			sourceTree = "<group>";
@@ -270,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				458C968122CBAF6D00CABB33 /* RewardTests.swift in Sources */,
+				4554A2F522CBBCE8004DBC76 /* QuestTests.swift in Sources */,
 				4591D03F22C16E1400C67F5A /* ErrandTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -279,6 +286,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				458C967F22CBAF2E00CABB33 /* Reward.swift in Sources */,
+				4554A2F322CBB6F5004DBC76 /* Quest.swift in Sources */,
 				4591D04C22C16F5B00C67F5A /* Errand.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
