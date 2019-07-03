@@ -151,4 +151,34 @@ class ErrandTests: XCTestCase {
         XCTAssertEqual(expectedQueueName, returnedQueueName)
         XCTAssertEqual(TestError.expectedError, returnedError)
     }
+    
+    func testQuestWaiter_withQuest() {
+        let expectedResult = "result"
+        
+        let rewardClosure: (Quest<String>) -> () = { quest in
+            DispatchQueue(label: "test").asyncAfter(deadline: .now() + 2, execute: {
+                quest.win(the: expectedResult)
+            })
+        }
+        let reward = try! <&rewardClosure
+        let quest = reward as! Quest<String>
+        
+        let returnedResult = try! !&quest
+        
+        XCTAssertEqual(expectedResult, returnedResult)
+    }
+    
+    func testQuestWaiter_withQuestClosure() {
+        let expectedResult = "result"
+        
+        let questClosure: (Quest<String>) -> () = { quest in
+            DispatchQueue(label: "test").asyncAfter(deadline: .now() + 2, execute: {
+                quest.win(the: expectedResult)
+            })
+        }
+        
+        let returnedResult = try! !&questClosure
+        
+        XCTAssertEqual(expectedResult, returnedResult)
+    }
 }

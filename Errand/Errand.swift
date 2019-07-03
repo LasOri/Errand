@@ -8,6 +8,41 @@
 
 import Foundation
 
+prefix operator !&
+@discardableResult
+prefix func !&<T>(operand: Quest<T>) throws -> T? {
+    var reward: T?
+    var err: Error?
+    let group = DispatchGroup()
+    group.enter()
+    operand.earn { result in
+        switch result {
+        case .success(let value):
+            reward = value
+        case .failure(let error):
+            err = error
+        }
+        group.leave()
+    }
+    _ = group.wait(timeout: DispatchTime.now() + 30)
+    if let error = err {
+        throw error
+    }
+    return reward
+}
+
+@discardableResult
+prefix func !&<T>(operand: (Quest<T>) throws -> ()) throws -> T? {
+    var reward: T?
+    do {
+        let quest = try <&operand as! Quest<T>
+        reward = try !&quest
+    } catch {
+        throw error
+    }
+    return reward
+}
+
 enum Land {
     case mein
     case land(String)
@@ -53,7 +88,6 @@ class Errand<T> {
     }()
 
     init() {
-        
     }
     
     func wanderlust(on land: Land) -> Errand {
