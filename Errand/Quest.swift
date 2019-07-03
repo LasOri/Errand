@@ -18,6 +18,8 @@ prefix func <&<T>(operand: (Quest<T>) throws -> ()) throws -> Reward<T> {
 
 class Quest<Treasure>: Reward<Treasure> {
     
+    var questTime: Double = 30
+    
     init(treasure: Treasure? = nil) {
         super.init()
 

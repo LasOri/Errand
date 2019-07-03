@@ -8,6 +8,10 @@
 
 import Foundation
 
+enum QuestError: Error, Equatable {
+    case questFailed(String)
+}
+
 prefix operator !&
 @discardableResult
 prefix func !&<T>(operand: Quest<T>) throws -> T? {
@@ -24,7 +28,12 @@ prefix func !&<T>(operand: Quest<T>) throws -> T? {
         }
         group.leave()
     }
-    _ = group.wait(timeout: DispatchTime.now() + 30)
+    let timeoutResult = group.wait(timeout: DispatchTime.now() + operand.questTime)
+    switch timeoutResult {
+    case .timedOut:
+        throw QuestError.questFailed("Quest time expired!")
+    case .success: break
+    }
     if let error = err {
         throw error
     }

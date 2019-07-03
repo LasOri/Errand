@@ -15,7 +15,7 @@ class ErrandTests: XCTestCase {
         case expectedError
     }
     
-    let timeout = 3.0
+    let timeout = 2.0
 
     func testWanderlust_when_landIsGiven() {
         let expectedQueueName = "Dream"
@@ -180,5 +180,20 @@ class ErrandTests: XCTestCase {
         let returnedResult = try! !&questClosure
         
         XCTAssertEqual(expectedResult, returnedResult)
+    }
+    
+    func testQuestWaiter_withTimeOut() {
+        let expectedResult = "result"
+        
+        let rewardClosure: (Quest<String>) -> () = { quest in
+            DispatchQueue(label: "test").asyncAfter(deadline: .now() + self.timeout + 2, execute: {
+                quest.win(the: expectedResult)
+            })
+        }
+        let reward = try! <&rewardClosure
+        let quest = reward as! Quest<String>
+        quest.questTime = timeout
+        
+        XCTAssertThrowsError(try !&quest)
     }
 }
