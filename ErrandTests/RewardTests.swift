@@ -32,4 +32,26 @@ class RewardTests: XCTestCase {
         XCTAssertEqual(expectedResult, try! returnedResult.get())
     }
 
+    func testFollow() {
+        let expectedResult = "third"
+        var results = ["first", "second", expectedResult]
+        let rewardClosure: (Quest<String>) -> () = { quest in
+            DispatchQueue(label: "test").asyncAfter(deadline: .now() + 2, execute: {
+                quest.win(the: results.remove(at: 0))
+            })
+        }
+        
+        let reward = try! <&rewardClosure
+     
+        let result = try! !&(reward
+            .follow { value -> Reward<String> in
+                return try! <&rewardClosure
+            }
+            .follow(with: { value -> Reward<String> in
+                return try! <&rewardClosure
+            }) as! Quest<String>)
+        
+        XCTAssertEqual(expectedResult, result)
+    }
+    
 }
